@@ -51,10 +51,11 @@ public class ProductServiceImpl implements ProductService {
         return productos.stream().max((a, b)->a.getPrecio()-b.getPrecio()).get();
     }
 
+
     @Override
     public Productos productMasBarato() {
         List<Productos> productos = productoRepository.findAll();
-        return productos.stream().min()
+        return productos.stream().min((a,b)-> a.getPrecio()- b.getPrecio()).get();
     }
 
 
