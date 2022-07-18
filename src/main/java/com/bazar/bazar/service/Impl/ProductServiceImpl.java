@@ -5,10 +5,12 @@ import com.bazar.bazar.repository.ProductoRepository;
 import com.bazar.bazar.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
@@ -16,6 +18,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void crearProduct(Productos prod) {
+
         Productos nuevoProducto = productoRepository.save(prod);
     }
 
@@ -29,14 +32,16 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Productos editarProductId(Productos productos, Long id) {
         Productos proEditado = productoRepository.findById(id).orElseThrow();
-        proEditado.setNomProduct(productos.getNomProduct());
+        proEditado.setNomproduct(productos.getNomproduct());
         proEditado.setPrecio(productos.getPrecio());
         proEditado.setStock(productos.getStock());
-        return proEditado;
+        productoRepository.save(productos);
+        return productos;
     }
 
     @Override
     public void deletedProduct(Long id) {
+
         productoRepository.deleteById(id);
     }
 }

@@ -17,8 +17,7 @@ public class Productos {
     @Column(name = "product_id")
     private Long id;
 
-    @NotNull
-    private String NomProduct;
+    private String nomproduct;
 
     @NotNull
     private int precio;
