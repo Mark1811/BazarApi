@@ -17,23 +17,30 @@ public class ProductController {
 
 
     @PostMapping("/crear")
-    public void crearProduct(@RequestBody Productos pro){
-         productService.crearProduct(pro);
+    public void crearProduct(@RequestBody Productos pro) {
+        productService.crearProduct(pro);
     }
 
     @GetMapping("/traer")
     @ResponseBody
-    public List<Productos> listProduct(){
-         return productService.listarProduct();
+    public List<Productos> listProduct() {
+        return productService.listarProduct();
     }
 
     @PutMapping("/edit/{id}")
-    public Productos editarProductId(@RequestBody Productos pro, @PathVariable Long id){
-            return productService.editarProductId(pro,id);
+    public Productos editarProductId(@RequestBody Productos pro, @PathVariable Long id) {
+        return productService.editarProductId(pro, id);
     }
 
     @DeleteMapping("eliminar/{id}")
-    public void eliminarProducto(@PathVariable Long id){
+    public void eliminarProducto(@PathVariable Long id) {
         productService.deletedProduct(id);
+    }
+
+    @GetMapping("/mascaro")
+    @ResponseBody
+    public Productos productCaros() {
+
+        return productService.productMasCaro();
     }
 }

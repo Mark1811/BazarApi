@@ -16,4 +16,8 @@ public interface ProductService {
 
     public void deletedProduct (Long id);
 
+    public Productos productMasCaro();
+
+    public Productos productMasBarato();
+
 }
