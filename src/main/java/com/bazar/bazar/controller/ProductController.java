@@ -43,4 +43,14 @@ public class ProductController {
 
         return productService.productMasCaro();
     }
+
+
+    @GetMapping("/masbarato")
+    @ResponseBody
+    public Productos productBaratos() {
+
+        return productService.productMasBarato();
+    }
+
+
 }
