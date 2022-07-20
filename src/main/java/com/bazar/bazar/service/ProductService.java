@@ -1,25 +1,24 @@
 package com.bazar.bazar.service;
 
 import com.bazar.bazar.model.Productos;
-
+import org.springframework.http.ResponseEntity;
 
 
 import java.util.List;
 
 public interface ProductService {
 
-    public void crearProduct(Productos prod);
+    public Productos crearProduct (Productos prod);
 
-    public List<Productos> listarProduct();
+    List<Productos> listarProduct();
 
-    Productos editarProductId (Productos productos, Long id);
+    Productos editarProductId(Productos productos, Long id);
 
-    public void deletedProduct (Long id);
+    public ResponseEntity deletedProduct(Long id);
 
     public Productos productMasCaro();
 
-     public Productos productMasBarato();
+    public Productos productMasBarato();
 
-
-
+    public List<Productos> ordenMenAMay();
 }

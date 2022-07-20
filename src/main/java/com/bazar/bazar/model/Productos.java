@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table
 @Getter @Setter
 
-public class Productos {
+public class Productos implements Comparable<Productos> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +25,16 @@ public class Productos {
     @NotNull
     private int stock;
 
+    @Override
+    public int compareTo(Productos pr) {
+        if(this.getPrecio() < pr.getPrecio()){
+            return -1;
+        }else{
+            if(this.getPrecio()>pr.getPrecio()){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+    }
 }
