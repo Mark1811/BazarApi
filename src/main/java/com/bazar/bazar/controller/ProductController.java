@@ -43,25 +43,23 @@ public class ProductController {
 
     @GetMapping("/mascaro")
     @ResponseBody
-    public Productos productCaros() {
+    public ResponseEntity<Productos> productCaros() {
 
-        return productService.productMasCaro();
+        return ResponseEntity.status(HttpStatus.OK).body(productService.productMasCaro());
     }
 
 
     @GetMapping("/masbarato")
     @ResponseBody
-    public Productos productBaratos() {
+    public ResponseEntity<Productos> productBaratos() {
 
-        return productService.productMasBarato();
+        return ResponseEntity.status(HttpStatus.OK).body(productService.productMasBarato());
     }
 
     @GetMapping("/orMeAMa")
     @ResponseBody
-    public List<Productos> ordeMeAMay(){
-        return productService.ordenMenAMay();
+    public ResponseEntity<List<Productos>> ordeMeAMay(){
+
+        return ResponseEntity.ok().body(productService.ordenMenAMay());
     }
-
-
-
 }

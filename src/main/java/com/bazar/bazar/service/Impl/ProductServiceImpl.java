@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Productos crearProduct(Productos prod) {
-        if (prod.getNomproduct().isEmpty()|| prod.getNomproduct()==null) {
+        if (prod.getNomproduct().isEmpty() || prod.getNomproduct() == null) {
             throw new BadRequestException("nameProduct is invalid");
         } else if ((prod.getPrecio() < 0)) {
             throw new BadRequestException("precie is invalid");
@@ -38,10 +38,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Productos> listarProduct() {
 
         List<Productos> productos = productoRepository.findAll();
-        if(productos.isEmpty()){
+        if (productos.isEmpty()) {
             throw new NotFoundException("empty list");
-        }
-        else {
+        } else {
             return productos;
         }
     }
@@ -50,10 +49,9 @@ public class ProductServiceImpl implements ProductService {
     public Productos editarProductId(Productos productos, Long id) {
 
         Productos proEditado = productoRepository.findById(id).orElse(null);
-        if(proEditado==null){
-            throw new EntityNotFoundException( id + " not found in database");
-        }
-        else {
+        if (proEditado == null) {
+            throw new EntityNotFoundException(id + " not found in database");
+        } else {
             proEditado.setNomproduct(productos.getNomproduct());
             proEditado.setPrecio(productos.getPrecio());
             proEditado.setStock(productos.getStock());
@@ -65,10 +63,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity deletedProduct(Long id) {
         Productos product = productoRepository.findById(id).orElse(null);
-        if(product==null){
+        if (product == null) {
             throw new EntityNotFoundException(id + " not found in database");
-        }
-        else {
+        } else {
             productoRepository.deleteById(id);
         }
         return null;
@@ -77,21 +74,34 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Productos productMasCaro() {
         List<Productos> productos = productoRepository.findAll();
-        return productos.stream().max((a, b)->a.getPrecio()-b.getPrecio()).get();
+        if (productos.isEmpty() || productos == null) {
+            throw new NotFoundException("empty list");
+        } else {
+            return productos.stream().max((a, b) -> a.getPrecio() - b.getPrecio()).get();
+        }
     }
 
 
     @Override
     public Productos productMasBarato() {
         List<Productos> productos = productoRepository.findAll();
-        return productos.stream().min((a,b)-> a.getPrecio()- b.getPrecio()).get();
+        if (productos.isEmpty() || productos == null) {
+            throw new NotFoundException("empty list");
+        } else {
+            return productos.stream().min((a, b) -> a.getPrecio() - b.getPrecio()).get();
+        }
+
     }
 
     @Override
     public List<Productos> ordenMenAMay() {
         List<Productos> productos = productoRepository.findAll();
-         Collections.sort(productos);
-          return productos;
+        if (productos.isEmpty() || productos == null) {
+            throw new NotFoundException("empty list");
+        } else {
+            Collections.sort(productos);
+            return productos;
+        }
     }
 
 
