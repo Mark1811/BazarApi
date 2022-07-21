@@ -4,6 +4,8 @@ package com.bazar.bazar.controller;
 import com.bazar.bazar.model.Productos;
 import com.bazar.bazar.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,40 +19,47 @@ public class ProductController {
 
 
     @PostMapping("/crear")
-    public void crearProduct(@RequestBody Productos pro) {
-        productService.crearProduct(pro);
+    public ResponseEntity<Productos> crearProduct (@RequestBody Productos pro) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(productService.crearProduct(pro));
     }
 
     @GetMapping("/traer")
     @ResponseBody
-    public List<Productos> listProduct() {
-        return productService.listarProduct();
+    public ResponseEntity<List<Productos>> listProduct() {
+
+        return ResponseEntity.ok().body(productService.listarProduct());
     }
 
     @PutMapping("/edit/{id}")
-    public Productos editarProductId(@RequestBody Productos pro, @PathVariable Long id) {
-        return productService.editarProductId(pro, id);
+    public ResponseEntity<Productos> editarProductId(@RequestBody Productos pro, @PathVariable Long id) {
+        return ResponseEntity.ok().body(productService.editarProductId(pro,id));
     }
 
     @DeleteMapping("eliminar/{id}")
-    public void eliminarProducto(@PathVariable Long id) {
-        productService.deletedProduct(id);
+    public ResponseEntity eliminarProducto(@PathVariable Long id) {
+
+       return  ResponseEntity.ok().body(productService.deletedProduct(id));
     }
 
     @GetMapping("/mascaro")
     @ResponseBody
-    public Productos productCaros() {
+    public ResponseEntity<Productos> productCaros() {
 
-        return productService.productMasCaro();
+        return ResponseEntity.status(HttpStatus.OK).body(productService.productMasCaro());
     }
 
 
     @GetMapping("/masbarato")
     @ResponseBody
-    public Productos productBaratos() {
+    public ResponseEntity<Productos> productBaratos() {
 
-        return productService.productMasBarato();
+        return ResponseEntity.status(HttpStatus.OK).body(productService.productMasBarato());
     }
 
+    @GetMapping("/orMeAMa")
+    @ResponseBody
+    public ResponseEntity<List<Productos>> ordeMeAMay(){
 
+        return ResponseEntity.ok().body(productService.ordenMenAMay());
+    }
 }
