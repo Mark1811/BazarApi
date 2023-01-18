@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Productos implements Comparable<Productos> {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Long id;
 
