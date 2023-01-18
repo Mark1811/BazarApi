@@ -74,7 +74,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Productos productMasCaro() {
         List<Productos> productos = productoRepository.findAll();
-        if (productos.isEmpty() || productos == null) {
+        if (productos.isEmpty()) {
             throw new NotFoundException("empty list");
         } else {
             return productos.stream().max((a, b) -> a.getPrecio() - b.getPrecio()).get();
@@ -96,7 +96,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Productos> ordenMenAMay() {
         List<Productos> productos = productoRepository.findAll();
-        if (productos.isEmpty() || productos == null) {
+        if (productos.isEmpty()) {
             throw new NotFoundException("empty list");
         } else {
             Collections.sort(productos);
