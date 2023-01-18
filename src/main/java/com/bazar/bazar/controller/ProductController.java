@@ -26,7 +26,7 @@ public class ProductController {
     @GetMapping("/traer")
     @ResponseBody
     public ResponseEntity<List<Productos>> listProduct() {
-        
+
         return ResponseEntity.ok().body(productService.listarProduct());
     }
 
